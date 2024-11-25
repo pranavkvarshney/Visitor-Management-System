@@ -1,0 +1,38 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bellGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Notification bell -->
+  <path d="M100 40 Q130 40 130 70 V130 L150 150 H50 L70 130 V70 Q70 40 100 40 Z" fill="url(#bellGradient)">
+    <animate attributeName="d" 
+             values="M100 40 Q130 40 130 70 V130 L150 150 H50 L70 130 V70 Q70 40 100 40 Z;
+                     M100 42 Q132 42 132 72 V132 L152 152 H48 L68 132 V72 Q68 42 100 42 Z;
+                     M100 40 Q130 40 130 70 V130 L150 150 H50 L70 130 V70 Q70 40 100 40 Z"
+             dur="1.5s"
+             repeatCount="indefinite"/>
+  </path>
+
+  <!-- Bell clapper -->
+  <circle cx="100" cy="130" r="5" fill="#fff">
+    <animate attributeName="cy" values="130;132;130" dur="1.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Notification dot -->
+  <circle cx="130" cy="70" r="10" fill="#e74c3c">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Real-time waves -->
+  <path d="M50 170 Q100 150 150 170" fill="none" stroke="#3498db" stroke-width="4" stroke-linecap="round">
+    <animate attributeName="d" 
+             values="M50 170 Q100 150 150 170;
+                     M50 170 Q100 190 150 170;
+                     M50 170 Q100 150 150 170"
+             dur="2s"
+             repeatCount="indefinite"/>
+  </path>
+</svg>
