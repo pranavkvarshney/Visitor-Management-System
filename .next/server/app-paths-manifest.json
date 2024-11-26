@@ -1,13 +1,5 @@
 {
-  "/api/chat/route": "app/api/chat/route.js",
   "/page": "app/page.js",
-  "/components/page": "app/components/page.js",
   "/getstarted/page": "app/getstarted/page.js",
-  "/login/page": "app/login/page.js",
-  "/api/appuser/login/[appid]/route": "app/api/appuser/login/[appid]/route.js",
-  "/api/users/route": "app/api/users/route.js",
-  "/api/appuser/login/route": "app/api/appuser/login/route.js",
-  "/user/[userid]/page": "app/user/[userid]/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/api/users/[userid]/route": "app/api/users/[userid]/route.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }

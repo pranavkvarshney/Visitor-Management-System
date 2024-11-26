@@ -1,4 +1,4 @@
-// File: C:\Users\prana\Documents\Courses\WebDev\next\my-next-app\app\getstarted\page.js
+// File: C:\Users\prana\Documents\Courses\WebDev\next\Visitor Mangement System\app\getstarted\page.js
 import * as entry from '../../../../app/getstarted/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
