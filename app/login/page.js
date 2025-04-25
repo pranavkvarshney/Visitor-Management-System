@@ -82,7 +82,7 @@ export default function SignUpForm() {
                     <h1 className="text-2xl font-bold text-center">User Login</h1>
                 </div>
                 <div className='text-center'>
-                    Don't have an account yet?<a className="text-blue-500" href="/register">Signup</a>
+                    Don&apos;t have an account yet? <a className="text-blue-500" href="/register">Signup</a>
                 </div>
                 <div className="mx-11 md:mx-11">
 

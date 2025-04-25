@@ -25,7 +25,7 @@ const ClientMarquee = () => {
   return (
     <div className="w-full py-12">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">
+        <h2 className="text-2xl font-bold text-center mb-8 ">
           Trusted by Leading Organizations
         </h2>
         <div className="relative w-full overflow-hidden">
@@ -132,10 +132,10 @@ const Home = () => {
                     alt={feature.title}
                     priority
                   />
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                  <h3 className="text-xl font-semibold mb-2 ">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="">
                     {feature.description}
                   </p>
                 </div>

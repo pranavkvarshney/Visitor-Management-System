@@ -1,26 +1,45 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import Header from "@/app/components/Header";
 
-async function getuser(userIdParam) {
-    let response = await fetch(`http://localhost:3000/api/users/${userIdParam}`, {
-        cache: 'no-store',
-        method: 'GET'
-    });
-    response = await response.json();
-    return response;
-}
+// Move data fetching to a server component or use client-side data fetching
+export default function ViewUser({ params }) {
+    const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [printableId, setPrintableId] = useState('');
+    const [formattedDate, setFormattedDate] = useState({ day: '', year: '', time: '' });
 
-export default async function ViewUser({ params }) {
-    const result = await getuser(params.userid);
-    const user = result.data;
-    const id = user._id;
-    const part1 = id.substring(18, id.length);
-    let date = user.createdAt;
-    const day = date.substring(4, 10);
-    const year = date.substring(11, 15);
-    let time = date.substring(16, 24);
+    useEffect(() => {
+        async function fetchUser() {
+            try {
+                const response = await fetch(`http://localhost:3000/api/users/${params.userid}`, {
+                    cache: 'no-store',
+                    method: 'GET'
+                });
+                const result = await response.json();
+                setUser(result.data);
+
+                // Format ID and date after user data is loaded
+                const id = result.data._id;
+                setPrintableId(id.substring(18, id.length));
+
+                let date = result.data.createdAt;
+                setFormattedDate({
+                    day: date.substring(4, 10),
+                    year: date.substring(11, 15),
+                    time: date.substring(16, 24)
+                });
+
+                setIsLoading(false);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                setIsLoading(false);
+            }
+        }
+
+        fetchUser();
+    }, [params.userid]);
 
     const handlePrint = () => {
         const printContent = document.getElementById('printableCard');
@@ -36,28 +55,57 @@ export default async function ViewUser({ params }) {
 
     // Function to render photo or placeholder
     const renderPhoto = () => {
+        if (!user) return null;
+
         if (user.photo) {
-            // If there's a photo in base64 format
+            // Using Next.js Image component with base64 photo
             return (
-                <img
-                    src={user.photo}
-                    alt="Visitor Photo"
-                    className="w-full h-full object-cover rounded-full"
-                />
+                <div className="relative w-48 h-48">
+                    <Image
+                        src={user.photo}
+                        alt="Visitor Photo"
+                        fill
+                        className="object-cover rounded-full"
+                        priority
+                    />
+                </div>
             );
         } else {
             // Fallback to placeholder
             return (
-                <Image
-                    src="/photo.svg"
-                    alt="Visitor Photo"
-                    fill
-                    className="object-cover"
-                    priority
-                />
+                <div className="relative w-48 h-48">
+                    <Image
+                        src="/photo.svg"
+                        alt="Visitor Photo"
+                        fill
+                        className="object-cover rounded-full"
+                        priority
+                    />
+                </div>
             );
         }
     };
+
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading visitor information...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!user) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="text-center p-6 bg-red-50 rounded-lg">
+                    <p className="text-red-600">Could not load visitor information. Please try again.</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -88,14 +136,14 @@ export default async function ViewUser({ params }) {
                 <div className="flex flex-col md:flex-row gap-6">
                     {/* Photo Section */}
                     <div className="md:w-1/3 flex flex-col items-center border-b md:border-b-0 md:border-r border-gray-200 pb-6 md:pb-0">
-                        <div className="relative w-48 h-48 bg-gray-50 rounded-full overflow-hidden mb-4">
+                        <div className="w-48 h-48 bg-gray-50 rounded-full overflow-hidden mb-4">
                             {renderPhoto()}
                         </div>
                         <div className="text-2xl font-bold text-center text-gray-900">
                             {user.name}
                         </div>
                         <div className="text-sm text-gray-500 mt-1">
-                            ID: {part1}
+                            ID: {printableId}
                         </div>
                     </div>
 
@@ -121,10 +169,10 @@ export default async function ViewUser({ params }) {
                             <div className="col-span-2 text-sm text-gray-900">{user.purpose}</div>
 
                             <div className="col-span-1 text-sm font-medium text-gray-500">Visit Date</div>
-                            <div className="col-span-2 text-sm text-gray-900">{day}-{year}</div>
+                            <div className="col-span-2 text-sm text-gray-900">{formattedDate.day}-{formattedDate.year}</div>
 
                             <div className="col-span-1 text-sm font-medium text-gray-500">In Time</div>
-                            <div className="col-span-2 text-sm text-gray-900">{time}</div>
+                            <div className="col-span-2 text-sm text-gray-900">{formattedDate.time}</div>
                         </div>
 
                         {/* Signature Section */}

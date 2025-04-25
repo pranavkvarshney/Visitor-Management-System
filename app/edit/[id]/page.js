@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Header from "@/app/components/Header";
-export default function edit({ params }) {
+
+// Changed function name from 'edit' to 'Edit' to follow React component naming convention
+export default function Edit({ params }) {
     const router = useRouter()
     const [newName, setNewName] = useState("");
     const [newPhone, setNewPhone] = useState("")
@@ -13,12 +15,12 @@ export default function edit({ params }) {
     const [newPurpose, setNewPurpose] = useState("")
     const [newCompname, setNewCompname] = useState("")
     const [newCompadd, setNewCompadd] = useState("")
+
     useEffect(() => {
         async function getdata() {
             let response = await fetch(`http://localhost:3000/api/users/${params.id}`, {
                 cache: 'no-store',
                 method: 'GET'
-
             })
             response = await response.json()
 
@@ -33,8 +35,8 @@ export default function edit({ params }) {
         }
 
         getdata()
+    }, [params.id]) // Added params.id as a dependency
 
-    }, [])
     const handlesubmit = async (e) => {
         e.preventDefault()
         try {
@@ -54,7 +56,6 @@ export default function edit({ params }) {
                     newCompname,
                     newCompadd
                 })
-
             })
             result = await result.json()
             if (result.success) {
@@ -68,6 +69,7 @@ export default function edit({ params }) {
             alert(error)
         }
     }
+
     const handledelete = async (e) => {
         e.preventDefault()
         if (confirm("Are you sure you want to delete this user info?") === true) {
@@ -80,10 +82,8 @@ export default function edit({ params }) {
                 alert(data.message)
                 router.refresh()
                 router.push('/admin')
-
             } catch (error) {
                 alert(error)
-
             }
         }
         else {
@@ -96,18 +96,18 @@ export default function edit({ params }) {
             <Header />
             <div className="mt-2">
                 <form onSubmit={handlesubmit} onReset={handledelete}
-                    className="relative border w-[70%] pt-16 md:w-[55%] py-2 mx-auto gap-5 flex flex-col " >
+                    className="relative border w-[70%] pt-16 md:w-[55%] py-2 mx-auto gap-5 flex flex-col" >
                     <div className="mx-auto py-2">
                         <h1 className="text-2xl font-bold text-center">Edit Details</h1>
                     </div>
-                    <div className='mx-auto md:grid md:grid-cols-2 md:gap-6'>
-                        <div className=''>
+                    <div className="mx-auto md:grid md:grid-cols-2 md:gap-6">
+                        <div className="">
                             <label htmlFor="name" className="mb-2 ">Username</label>
                             <div className="flex w-full mb-2">
                                 <span className="inline-flex items-center px-4 bg-gray-100 border border-e-0 border-gray-300 rounded-s-md ">
                                     <Image
                                         src="/person1.svg"
-                                        alt='img'
+                                        alt="img"
                                         width={30}
                                         height={30}
                                         priority
@@ -128,7 +128,7 @@ export default function edit({ params }) {
                                 <span className="inline-flex items-center px-4 bg-gray-100 border border-e-0 border-gray-300 rounded-s-md ">
                                     <Image
                                         src="/phone.svg"
-                                        alt='img'
+                                        alt="img"
                                         width={30}
                                         height={30}
                                         priority
@@ -150,7 +150,7 @@ export default function edit({ params }) {
                                 <span className="inline-flex items-center px-4 bg-gray-100 border border-e-0 border-gray-300 rounded-s-md ">
                                     <Image
                                         src="/company.svg"
-                                        alt='img'
+                                        alt="img"
                                         width={30}
                                         height={30}
                                         priority
@@ -172,7 +172,7 @@ export default function edit({ params }) {
                                 <span className="inline-flex items-center px-4 bg-gray-100 border border-e-0 border-gray-300 rounded-s-md ">
                                     <Image
                                         src="/address.svg"
-                                        alt='img'
+                                        alt="img"
                                         width={30}
                                         height={30}
                                         priority
@@ -194,7 +194,7 @@ export default function edit({ params }) {
                                 <span className="inline-flex items-center px-4 bg-gray-100 border border-e-0 border-gray-300 rounded-s-md ">
                                     <Image
                                         src="/person.svg"
-                                        alt='img'
+                                        alt="img"
                                         width={30}
                                         height={30}
                                         priority
@@ -203,8 +203,8 @@ export default function edit({ params }) {
                                 <select
                                     onChange={(e) => setNewType(e.target.value)}
                                     value={newType}
-                                    className="border rounded-e-lg  block w-full p-2.5 " name="cars" id="cars" form="carform">
-                                    <option className='text-black' value="volvo">Guests</option>
+                                    className="border rounded-e-lg block w-full p-2.5" name="cars" id="cars" form="carform">
+                                    <option className="text-black" value="volvo">Guests</option>
                                     <option value="Interviewer">Interviewer</option>
                                     <option value="Courier">Courier</option>
                                     <option value="Client">Client</option>
@@ -218,7 +218,7 @@ export default function edit({ params }) {
                                 <span className="inline-flex items-center px-4 bg-gray-100 border border-e-0 border-gray-300 rounded-s-md ">
                                     <Image
                                         src="/purpose.svg"
-                                        alt='img'
+                                        alt="img"
                                         width={30}
                                         height={30}
                                         priority
@@ -227,7 +227,7 @@ export default function edit({ params }) {
                                 <select
                                     onChange={(e) => setNewPurpose(e.target.value)}
                                     value={newPurpose}
-                                    className="border rounded-e-lg  block w-full p-2.5 " name="cars" id="cars" form="carform">
+                                    className="border rounded-e-lg block w-full p-2.5" name="cars" id="cars" form="carform">
                                     <option value="Meeting">Meeting</option>
                                     <option value="Parcel Delivery">Parcel Delivery</option>
                                     <option value="Parcel Pickup">Parcel Pickup</option>
@@ -239,15 +239,14 @@ export default function edit({ params }) {
                         </div>
                     </div>
                     <h1 className="text-base pt-3 font-bold text-left">Meeting With...</h1>
-                    <div className="mx-auto md:grid  md:grid-cols-2 md:gap-6">
-
-                        <div >
+                    <div className="mx-auto md:grid md:grid-cols-2 md:gap-6">
+                        <div>
                             <label htmlFor="name" className="mb-2 ">Name</label>
                             <div className="flex w-full mb-2">
                                 <span className="inline-flex items-center px-4 bg-gray-100 border border-e-0 border-gray-300 rounded-s-md ">
                                     <Image
                                         src="/username.svg"
-                                        alt='img'
+                                        alt="img"
                                         width={30}
                                         height={30}
                                         priority
@@ -269,7 +268,7 @@ export default function edit({ params }) {
                                 <span className="inline-flex items-center px-4 bg-gray-100 border border-e-0 border-gray-300 rounded-s-md ">
                                     <Image
                                         src="/department.svg"
-                                        alt='img'
+                                        alt="img"
                                         width={30}
                                         height={30}
                                         priority
@@ -287,13 +286,12 @@ export default function edit({ params }) {
                         </div>
                     </div>
                     <div className="flex justify-center gap-16">
-                        <button className="bg-gradient-to-r  from-[#832121] via-[#a55151] to-[#d77878] rounded-lg px-9 py-3 text-white font-bold" type="reset">
+                        <button className="bg-gradient-to-r from-[#832121] via-[#a55151] to-[#d77878] rounded-lg px-9 py-3 text-white font-bold" type="reset">
                             Delete
                         </button>
-                        <button className="bg-gradient-to-r from-[#216583] via-[#518ca5] to-[#78bad7]   rounded-lg px-6 py-3 text-white font-bold" type="submit">
+                        <button className="bg-gradient-to-r from-[#216583] via-[#518ca5] to-[#78bad7] rounded-lg px-6 py-3 text-white font-bold" type="submit">
                             Update
                         </button>
-
                     </div>
                 </form>
             </div>
