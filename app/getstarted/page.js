@@ -20,11 +20,6 @@ export default function Home() {
                         <link rel="icon" href="/favicon.ico" />
                     </Head>
 
-
-
-
-
-
                     <main className="main">
                         <section className="hero">
                             <div className="hero-content">
@@ -32,8 +27,10 @@ export default function Home() {
                                 <p className="hero-description">
                                     VisitorPro streamlines check-ins, enhances security, and provides valuable insights for your organization.
                                 </p>
-                                <button onClick={price} className="m-4  professional-button"><span class="button-text">Ask For Price</span>
-                                    <span class="button-icon">→</span></button>
+                                <button onClick={price} className="m-4 professional-button">
+                                    <span className="button-text">Ask For Price</span>
+                                    <span className="button-icon">→</span>
+                                </button>
                             </div>
                         </section>
 
@@ -43,23 +40,43 @@ export default function Home() {
 
                                 <div className="feature-item">
                                     <div className="feature-icon">
-                                        <Image className="mx-auto" src="get1.svg" width={70} height={70} priority />
+                                        <Image
+                                            className="mx-auto"
+                                            src="get1.svg"
+                                            width={70}
+                                            height={70}
+                                            alt="Quick Check-In Icon"
+                                            priority
+                                        />
                                     </div>
                                     <h3 className="feature-title">Quick Check-In</h3>
                                     <p className="feature-description">Effortlessly record attendance and monitor arrivals with a streamlined check-in process, enhancing efficiency and ensuring seamless event management.</p>
                                 </div>
 
-
                                 <div className="feature-item">
                                     <div className="feature-icon">
-                                        <Image className="mx-auto" src="get2.svg" width={70} height={70} priority />
+                                        <Image
+                                            className="mx-auto"
+                                            src="get2.svg"
+                                            width={70}
+                                            height={70}
+                                            alt="Security Alerts Icon"
+                                            priority
+                                        />
                                     </div>
                                     <h3 className="feature-title">Security Alerts</h3>
                                     <p className="feature-description">Stay informed with real-time notifications about potential security issues, ensuring proactive protection for your data and systems.</p>
                                 </div>
                                 <div className="feature-item">
                                     <div className="feature-icon">
-                                        <Image className="mx-auto" src="get3.svg" width={70} height={70} priority />
+                                        <Image
+                                            className="mx-auto"
+                                            src="get3.svg"
+                                            width={70}
+                                            height={70}
+                                            alt="Customizable Workflows Icon"
+                                            priority
+                                        />
                                     </div>
                                     <h3 className="feature-title">Customizable Workflows</h3>
                                     <p className="feature-description">Tailor workflows to fit your unique business needs, enhancing efficiency and streamlining processes across your organization.</p>
@@ -67,7 +84,14 @@ export default function Home() {
 
                                 <div className="feature-item">
                                     <div className="feature-icon">
-                                        <Image className="mx-auto" src="get4.svg" width={70} height={70} priority />
+                                        <Image
+                                            className="mx-auto"
+                                            src="get4.svg"
+                                            width={70}
+                                            height={70}
+                                            alt="Reporting & Analytics Icon"
+                                            priority
+                                        />
                                     </div>
                                     <h3 className="feature-title">Reporting & Analytics</h3>
                                     <p className="feature-description">Gain valuable insights and make informed decisions with comprehensive reporting and analytics tools, enabling data-driven strategies.</p>
@@ -108,9 +132,8 @@ export default function Home() {
                             <div className="testimonial-grid">
 
                                 <div className="testimonial-item">
-                                    <p className="testimonial-text">"VisitorPro has transformed our reception area. The sleek check-in process impresses our clients and keeps our lobby organized. It's a game-changer for our corporate image."</p>
+                                    <p className="testimonial-text">&quot;VisitorPro has transformed our reception area. The sleek check-in process impresses our clients and keeps our lobby organized. It&apos;s a game-changer for our corporate image.&quot;</p>
                                     <div className="testimonial-author">
-
                                         <div>
                                             <p className="testimonial-name">Sarah Johnson</p>
                                             <p className="testimonial-position">Operations Manager,</p><p> TechCorp</p>
@@ -118,9 +141,8 @@ export default function Home() {
                                     </div>
                                 </div>
                                 <div className="testimonial-item">
-                                    <p className="testimonial-text">"The customizable workflows in VisitorPro have streamlined our contractor check-in process. We've cut wait times by 70% and improved overall site safety."</p>
+                                    <p className="testimonial-text">&quot;The customizable workflows in VisitorPro have streamlined our contractor check-in process. We&apos;ve cut wait times by 70% and improved overall site safety.&quot;</p>
                                     <div className="testimonial-author">
-
                                         <div>
                                             <p className="testimonial-name">Michael Chen</p>
                                             <p className="testimonial-position">Head of Security,</p><p> GlobalBank</p>
@@ -128,7 +150,7 @@ export default function Home() {
                                     </div>
                                 </div>
                                 <div className="testimonial-item">
-                                    <p className="testimonial-text">"Security is our top priority, and this visitor management system delivers. Real-time alerts and detailed visitor logs give us peace of mind we never had before."</p>
+                                    <p className="testimonial-text">&quot;Security is our top priority, and this visitor management system delivers. Real-time alerts and detailed visitor logs give us peace of mind we never had before.&quot;</p>
                                     <div className="testimonial-author">
                                         <div>
                                             <p className="testimonial-name">Emily Rodriguez</p>
@@ -136,8 +158,6 @@ export default function Home() {
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </section>
 
@@ -152,7 +172,6 @@ export default function Home() {
                             </form>
                         </section>
                     </main>
-
                 </div>
             </div>
         </>
