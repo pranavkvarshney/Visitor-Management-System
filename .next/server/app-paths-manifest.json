@@ -1,9 +1,12 @@
 {
   "/login/page": "app/login/page.js",
+  "/components/page": "app/components/page.js",
   "/page": "app/page.js",
   "/api/appuser/login/route": "app/api/appuser/login/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/register/page": "app/register/page.js",
+  "/api/appuser/route": "app/api/appuser/route.js",
+  "/user/page": "app/user/page.js",
   "/api/appuser/login/[appid]/route": "app/api/appuser/login/[appid]/route.js",
   "/api/users/route": "app/api/users/route.js",
-  "/user/page": "app/user/page.js"
+  "/api/users/entry/[entryid]/route": "app/api/users/entry/[entryid]/route.js"
 }

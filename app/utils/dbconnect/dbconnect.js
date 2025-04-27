@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 // Track connection status
 let isConnected = false;
@@ -10,11 +10,13 @@ export async function connect() {
         return;
     }
 
-    try {
-        const db = await mongoose.connect(
-            "mongodb+srv://pranav:pranav@cluster0.jo7f5.mongodb.net/ContactForm?retryWrites=true&w=majority&appName=Cluster0"
-        );
+    // Check if environment variable exists
+    if (!process.env.MONGODB_URI) {
+        throw new Error("MONGODB_URI environment variable is not defined");
+    }
 
+    try {
+        const db = await mongoose.connect(process.env.MONGODB_URI);
         isConnected = db.connections[0].readyState === 1;
         console.log("Connected to MongoDB Atlas");
     } catch (error) {
