@@ -4,6 +4,7 @@ import bcryptjs from "bcryptjs"
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
+// Connect to MongoDB Atlas instead of localhost
 connect()
 
 export async function POST(request) {
@@ -12,7 +13,7 @@ export async function POST(request) {
         console.log(email)
         const checkUser = await appUser.findOne({ email })
         if (!checkUser) {
-            return NextResponse.json({ success: false, message: "This email is not registered yet!Please register first!" })
+            return NextResponse.json({ success: false, message: "This email is not registered yet! Please register first!" })
         }
         const checkpass = await bcryptjs.compare(password, checkUser.password)
         if (!checkpass) {

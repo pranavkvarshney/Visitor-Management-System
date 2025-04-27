@@ -34,7 +34,8 @@ export default function SignUpForm() {
             setPassword("")
 
             if (response.success) {
-                let result1 = await fetch(`http://localhost:3000/api/appuser/login/${email}`, {
+                // Change from localhost:3000 to relative paths
+                let result1 = await fetch(`/api/appuser/login/${email}`, {
                     cache: 'no-store',
                     method: 'PUT',
                     headers: {
@@ -45,7 +46,7 @@ export default function SignUpForm() {
                     })
                 })
                 result1 = await result1.json()
-                let result = await fetch(`http://localhost:3000/api/appuser/login/${email}`, {
+                let result = await fetch(`/api/appuser/login/${email}`, {
                     cache: 'no-store',
                 })
                 ref.current = true

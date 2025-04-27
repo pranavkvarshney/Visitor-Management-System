@@ -18,7 +18,7 @@ export default function Edit({ params }) {
 
     useEffect(() => {
         async function getdata() {
-            let response = await fetch(`http://localhost:3000/api/users/${params.id}`, {
+            let response = await fetch(`/api/users/${params.id}`, {
                 cache: 'no-store',
                 method: 'GET'
             })
@@ -40,7 +40,7 @@ export default function Edit({ params }) {
     const handlesubmit = async (e) => {
         e.preventDefault()
         try {
-            let result = await fetch(`http://localhost:3000/api/users/${params.id}`, {
+            let result = await fetch(`/api/users/${params.id}`, {
                 cache: 'no-store',
                 method: 'PUT',
                 headers: {
@@ -74,7 +74,7 @@ export default function Edit({ params }) {
         e.preventDefault()
         if (confirm("Are you sure you want to delete this user info?") === true) {
             try {
-                let response = await fetch(`http://localhost:3000/api/users/${params.id}`, {
+                let response = await fetch(`/api/users/${params.id}`, {
                     cache: 'no-store',
                     method: 'DELETE',
                 });

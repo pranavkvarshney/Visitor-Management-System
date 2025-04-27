@@ -16,7 +16,7 @@ const Page = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch("http://localhost:3000/api/users", {
+                const response = await fetch("/api/users", {
                     cache: 'no-store',
                     method: 'GET'
                 })
