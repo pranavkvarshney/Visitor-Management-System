@@ -13,7 +13,7 @@ export default function ViewUser({ params }) {
     useEffect(() => {
         async function fetchUser() {
             try {
-                const response = await fetch(`http://localhost:3000/api/users/${params.userid}`, {
+                const response = await fetch(`/api/users/${params.userid}`, {
                     cache: 'no-store',
                     method: 'GET'
                 });

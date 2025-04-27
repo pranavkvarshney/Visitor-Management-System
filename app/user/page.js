@@ -11,7 +11,7 @@ const UsersPage = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await fetch("http://localhost:3000/api/users", {
+            const response = await fetch("/api/users", {
                 cache: 'no-store',
                 method: 'GET'
             })
@@ -61,7 +61,7 @@ const UsersPage = () => {
 
     const handleStatusUpdate = async (userId, status) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/users/entry/${userId}`, {
+            const response = await fetch(`/api/users/entry/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
